@@ -1,0 +1,1072 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Reference</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[&quot;php&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" alt="Logo" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="php">PHP</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id="introduction">Introduction</h1>
+<pre class="highlight shell tab-shell"><code>Content-type: application/json
+Method: POST
+</code></pre>
+<p>The PushAuth API is organized around REST. Our API has predictable, resource-oriented URLs, and uses HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP authentication and HTTP verbs, which are understood by off-the-shelf HTTP clients. We support cross-origin resource sharing, allowing you to interact securely with our API from a client-side web application (though you should never expose your secret API key in any public website&rsquo;s client-side code). JSON is returned by all API responses, including errors, although our API libraries convert responses to appropriate language-specific objects.</p>
+
+<h1 id="security">Security</h1>
+<pre class="highlight shell tab-shell"><code>HMAC algorithm: SHA-256
+HMAC data: base64<span class="o">(</span>json<span class="o">)</span>
+HMAC password: private key
+HMAC result <span class="nb">type</span>: base64<span class="o">(</span>bytes<span class="o">)</span>
+</code></pre>
+<p>Data from your server to the PushAuth server is transmitted in a closed form, via TLS, using the HMAC signature with SHA-256.</p>
+
+<p>Take care of the secure storage of your <strong>Private Key</strong>.</p>
+
+<p>All requests contains variables:</p>
+
+<table><thead>
+<tr>
+<th>Type</th>
+<th>Param</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>string</td>
+<td>pk</td>
+<td>Your application public key</td>
+</tr>
+<tr>
+<td>string</td>
+<td>data</td>
+<td>JSON-encoded string in BASE64 with signature</td>
+</tr>
+</tbody></table>
+
+<p><code class="prettyprint">data</code> is string, for example: <code class="prettyprint">qwerty.zxcvb</code>, where:</p>
+
+<p><code class="prettyprint">qwerty</code> - json encoded string in BASE64</p>
+
+<p><code class="prettyprint">zxcvb</code> - HMAC hash of <code class="prettyprint">qwerty</code>, in BASE64, with your <code class="prettyprint">private key</code>.</p>
+
+<p>And we explain, how to generate <code class="prettyprint">data</code> string for requests and how to check server response.</p>
+
+<h2 id="encoding-data">Encoding data</h2>
+<pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="c1">//Setting data params
+</span><span class="nv">$data</span> <span class="o">=</span> <span class="nb">json_encode</span><span class="p">([</span><span class="s1">'addr_to'</span>     <span class="o">=&gt;</span> <span class="s1">'client@mysite.com'</span><span class="p">,</span>
+                     <span class="s1">'mode'</span>           <span class="o">=&gt;</span> <span class="s1">'push'</span>
+                     <span class="p">]);</span>
+
+<span class="c1">//Try encode data
+</span><span class="nv">$encodedData</span> <span class="o">=</span> <span class="nb">base64_encode</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
+<span class="nv">$signature</span> <span class="o">=</span> <span class="nb">base64_encode</span><span class="p">(</span><span class="nb">hash_hmac</span><span class="p">(</span><span class="s1">'sha256'</span><span class="p">,</span><span class="nv">$encodedData</span><span class="p">,</span><span class="s1">'myPrivateKey'</span><span class="p">,</span><span class="kc">true</span><span class="p">));</span>
+
+<span class="c1">//Encoded data
+</span><span class="nv">$requestString</span> <span class="o">=</span> <span class="nv">$encodedData</span><span class="o">.</span> <span class="s1">'.'</span> <span class="o">.</span><span class="nv">$signature</span><span class="p">;</span>
+</code></pre>
+<blockquote>
+<p>Result:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="s2">"eyJhZGRyZXNzX3RvIjoiY2xpZW50QG15c2l0ZS5jb20iLCJtb2RlIjoicHVzaCJ9.2MshIWdAZ1K8vvau+e9JdBOEgHTwoqNhUiRQY6A/QBE="</span><span class="w">
+</span></code></pre>
+<p><img src="http://dashboard.pushauth.dev/assets/images/hmac.png" alt="Image of Security" /></p>
+
+<p>After successfully registering the application in the dashboard, you have a <strong>private key</strong> available. You will use it to sign data using HMAC (SHA-256).</p>
+
+<p>Actions</p>
+
+<ol>
+<li>An encoded string consists of two string values, which are separated by a dot. (Example: <code class="prettyprint">jsonDataInBase64</code><strong>.</strong><code class="prettyprint">hmacInBase64</code>).</li>
+<li>Get the first part, encode your json data in BASE64.</li>
+<li>Generate the second part, create the HMAC using the value (string) from the first part with your <code class="prettyprint">private key</code> and the <code class="prettyprint">SHA256</code> algorithm. For example, <code class="prettyprint">hash_hmac(&#39;sha256&#39;, data, private_key)</code>. And the received data must be encoded in BASE64.</li>
+<li>As a result, you have two values, separated by dot.</li>
+</ol>
+
+<h2 id="decoding-data">Decoding data</h2>
+<pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="c1">//Response JSON
+</span><span class="nv">$inputJson</span><span class="o">=</span><span class="s2">"'message':'Success push created!','data':'YlRyencwNUU0b2NvTXFPUTl5alhheXlpZnhoTVNqZFhSVWJYd29OakpvYmFk.ajZTYjdTejdOR2Vicnp4dDN2WC51MoZQEoQAwnbw2RGb6Dvq'"</span><span class="p">;</span>
+
+<span class="c1">//Convert to Array
+</span><span class="nv">$inputArr</span><span class="o">=</span><span class="nb">json_decode</span><span class="p">(</span><span class="nv">$inputJson</span><span class="p">,</span><span class="kc">true</span><span class="p">);</span>
+
+<span class="nv">$data</span> <span class="o">=</span> <span class="nv">$inputArr</span><span class="p">[</span><span class="s1">'data'</span><span class="p">];</span>
+<span class="nv">$dataArray</span> <span class="o">=</span> <span class="nb">explode</span><span class="p">(</span><span class="s1">'.'</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+
+<span class="c1">//Fetch data
+</span><span class="nv">$clearData</span> <span class="o">=</span> <span class="nv">$data</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="nv">$dataString</span> <span class="o">=</span> <span class="nb">base64_decode</span><span class="p">(</span><span class="nv">$data</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+
+<span class="c1">//Fetch signature
+</span><span class="nv">$serverSignature</span> <span class="o">=</span> <span class="nv">$data</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+
+<span class="c1">//Generate your signature
+</span><span class="nv">$clientSignature</span> <span class="o">=</span> <span class="nb">base64_encode</span><span class="p">(</span><span class="nb">hash_hmac</span><span class="p">(</span><span class="s1">'sha256'</span><span class="p">,</span><span class="nv">$clearData</span><span class="p">,</span><span class="s1">'PrivateKey'</span><span class="p">,</span> <span class="kc">true</span><span class="p">));</span>
+
+<span class="c1">//Check your signature with Server signature
+</span><span class="k">if</span> <span class="p">(</span><span class="nv">$serverSignature</span> <span class="o">!=</span> <span class="nv">$clientSignature</span> <span class="p">)</span> <span class="p">{</span>
+         <span class="k">throw</span> <span class="k">new</span> <span class="nx">\Exception</span><span class="p">(</span><span class="s1">'Signature incorrect!'</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nv">$result</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$dataString</span><span class="p">,</span><span class="kc">true</span><span class="p">);</span>
+</code></pre>
+<blockquote>
+<p>Result: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="s2">"req_hash"</span><span class="err">=&gt;</span><span class="s2">"someUniqCodeHash"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"answer"</span><span class="err">=&gt;</span><span class="kc">true</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p><em>Algorithm for decoding a string</em></p>
+
+<p>We have a private key. The order of actions:</p>
+
+<ol>
+<li>We have encoded string, example:
+<code class="prettyprint">YlRyencwNUU0b2NvTXFPUTl5alhheXlpZnhoTVNqZFhSVWJYd29OakpvYmFkajZTY.jdTejdOR2Vicnp4dDN2WC51MoZQEoQAwnbw2RGb6Dvq</code></li>
+<li>We split the line using the dot separator symbol into two lines. The first part of it will be data, and second - HMAC-signature. At result,
+data: <code class="prettyprint">YlRyencwNUU0b2NvTXFPUTl5alhheXlpZnhoTVNqZFhSVWJYd29OakpvYmFkajZTY</code>
+and signature: <code class="prettyprint">jdTejdOR2Vicnp4dDN2WC51MoZQEoQAwnbw2RGb6Dvq</code></li>
+<li>Decode <strong>data</strong> by Base64 function. And we receive json.</li>
+<li>To verify the validity of the data, we generate HMAC signature. To do this, we use the data encoded in base64 (example: <code class="prettyprint">YlRyencwNUU0b2NvTXFPUTl5alhheXlpZnhoTVNqZFhSVWJYd29OakpvYmFkajZTY</code>), algorithm SHA-256 and <code class="prettyprint">private key</code>. And the result encode in base64. </li>
+<li>Now we need to compare: our generated HMAC and HMAC, obtained from the answer. If they coincide, then you can trust the answer.</li>
+</ol>
+
+<h1 id="push-request">Push request</h1>
+
+<h2 id="request">Request</h2>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"pk"</span><span class="p">:</span><span class="s2">"56a24f5f9ee389dd88e4e071ce7fe67a"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"data"</span><span class="p">:</span><span class="s2">"YlRyencwNUU0b2NvTXFPUTl5alhheXlpZnhoTVNqZFhSVWJYd29OakpvYmFkaj.ZTYjdTejdOR2Vicnp4dDN2WC51MoZQEoQAwnbw2RGb6Dvq"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Decoded <strong>data</strong> parameter:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"addr_to"</span><span class="p">:</span><span class="s2">"client@yoursite.com"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"mode"</span><span class="p">:</span><span class="s2">"code"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"123-456"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Parameter <strong>address_to</strong> can be json array like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"addr_to"</span><span class="p">:{</span><span class="w">
+    </span><span class="err">'</span><span class="mi">1</span><span class="err">'</span><span class="p">:</span><span class="err">'client</span><span class="mi">1</span><span class="err">@example.com'</span><span class="p">,</span><span class="w">
+    </span><span class="err">'</span><span class="mi">2</span><span class="err">'</span><span class="p">:</span><span class="err">'client</span><span class="mi">2</span><span class="err">@example.com'</span><span class="p">,</span><span class="w">
+    </span><span class="err">'</span><span class="mi">3</span><span class="err">'</span><span class="p">:</span><span class="err">'client</span><span class="mi">3</span><span class="err">@example.com'</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+</span><span class="s2">"mode"</span><span class="p">:</span><span class="s2">"push"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>or this for one client:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"addr_to"</span><span class="p">:{</span><span class="w">
+    </span><span class="err">'</span><span class="mi">1</span><span class="err">'</span><span class="p">:</span><span class="err">'client</span><span class="mi">1</span><span class="err">@example.com'</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+</span><span class="s2">"mode"</span><span class="p">:</span><span class="s2">"push"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>or this for random client:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"addr_to"</span><span class="p">:{</span><span class="w">
+    </span><span class="err">'</span><span class="mi">3</span><span class="err">'</span><span class="p">:</span><span class="err">'client</span><span class="mi">1</span><span class="err">@example.com'</span><span class="p">,</span><span class="w">
+    </span><span class="err">'</span><span class="mi">1</span><span class="err">'</span><span class="p">:</span><span class="err">'client</span><span class="mi">2</span><span class="err">@example.com'</span><span class="p">,</span><span class="w">
+    </span><span class="err">'</span><span class="mi">2</span><span class="err">'</span><span class="p">:</span><span class="err">'client</span><span class="mi">3</span><span class="err">@example.com'</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+</span><span class="s2">"mode"</span><span class="p">:</span><span class="s2">"push"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Sending PUSH-request for your client</p>
+
+<p>This request allows you to send a push request, using PushAuth, to your client, knowing it email-address, to mobile device and receive response. Your client must have installed mobile iOS or Android app with logged email</p>
+
+<h3 id="http-request">HTTP request</h3>
+
+<p><code class="prettyprint">POST https://api.pushauth.io/push/send</code></p>
+
+<p><code class="prettyprint">Content-Type: application/json</code></p>
+
+<h3 id="query-parameters">Query parameters</h3>
+
+<table><thead>
+<tr>
+<th>Type</th>
+<th>Param</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>string</td>
+<td>pk</td>
+<td>Your application public key</td>
+</tr>
+<tr>
+<td>string</td>
+<td>data</td>
+<td>JSON-encoded string, with key/values.</td>
+</tr>
+<tr>
+<td>string/json</td>
+<td>addr_to</td>
+<td>E-mail address of client device app.</td>
+</tr>
+<tr>
+<td>string</td>
+<td>mode</td>
+<td>Mode of push request. Available: <code class="prettyprint">push</code> - push request with question (yes or no) or <code class="prettyprint">code</code> - for sending code value.</td>
+</tr>
+<tr>
+<td>string(8)</td>
+<td>code</td>
+<td>Code/text/char or &hellip;, that be displayed at client device application, only if selected <code class="prettyprint">mode</code> = <code class="prettyprint">code</code></td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>flash_response</td>
+<td>Mode of server response. If <code class="prettyprint">true</code> - then immediately, after sending a push request, you will receive a response with a request hash that you can then check the status of the response from your client (his device). If <code class="prettyprint">false</code> - then after sending a push request, the server will wait for a response from your client (his device) within 30 seconds. If the answer is not received, during this time - you will receive a response from the server.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+If you use &ldquo;flash_response&rdquo;:&ldquo;false&rdquo;, the response are received by you only if client mobile device answered. Otherwise, if the response from the client does not arrive within 30 seconds, you will receive a response with a request hash that will later be able to track the status of the response.
+</aside>
+
+<aside class="notice">
+If you use &ldquo;mode&rdquo;:&ldquo;code&rdquo;, &ldquo;flash_response&rdquo;:&ldquo;false&rdquo; are ignored.
+</aside>
+
+<aside class="notice">
+If you use &ldquo;addr_to&rdquo; as json array, the service will be use Routing Service. In json array: the first parameter is order and the second - client email. The next client will receive push only if previous answer &ldquo;yes&rdquo;. The all request status will be true only if all clients answered &ldquo;yes&rdquo;.
+</aside>
+
+<h2 id="response">Response</h2>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"Success push created!"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"data"</span><span class="p">:</span><span class="s2">"YlRyencwNUU0b2NvTXFPUTl5alhheXlpZnhoTVNqZFhSVWJYd29OakpvYm.FkajZTYjdTejdOR2Vicnp4dDN2WC51MoZQEoQAwnbw2RGb6Dvq"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Decoded <strong>data</strong> parameter:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"req_hash"</span><span class="p">:</span><span class="s2">"someUniqCodeHash"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"answer"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>The response from the server will be with the code 200 if the push is successful, otherwise see the error codes.</p>
+
+<p><code class="prettyprint">Content-Type: application/json</code></p>
+
+<p><code class="prettyprint">Response Code: 200 OK</code></p>
+
+<table><thead>
+<tr>
+<th>Type</th>
+<th>Param</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>string</td>
+<td>message</td>
+<td>Message with error description.</td>
+</tr>
+<tr>
+<td>string</td>
+<td>data</td>
+<td>JSON-encoded data, with key/values.</td>
+</tr>
+<tr>
+<td>string</td>
+<td>req_hash</td>
+<td>A unique request hash, through which you can check the status of the authorization request</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>answer</td>
+<td>Client answer. <code class="prettyprint">true</code> - if clicked yes, <code class="prettyprint">false</code> - if clicked no.</td>
+</tr>
+</tbody></table>
+
+<h1 id="auth-by-qr-code">Auth by QR-code</h1>
+
+<h2 id="request">Request</h2>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"pk"</span><span class="p">:</span><span class="s2">"56a24f5f9ee389dd88e4e071ce7fe67a"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"data"</span><span class="p">:</span><span class="s2">"YlRyencwNUU0b2NvTXFPUTl5alhheXlpZnhoTVNqZFhSVWJYd29OakpvYmFkaj.ZTYjdTejdOR2Vicnp4dDN2WC51MoZQEoQAwnbw2RGb6Dvq"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Decoded <strong>data</strong> parameter:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"image"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"size"</span><span class="p">:</span><span class="s2">"128"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"color"</span><span class="p">:</span><span class="s2">"40,0,40"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"backgroundColor"</span><span class="p">:</span><span class="s2">"255,255,255"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"margin"</span><span class="p">:</span><span class="s2">"1"</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>You can use QR-code auth in your application. You show only QR-code and your client scan it by PushAuth mobile Application, and you can identify client.</p>
+
+<p>This request allows you to get <code class="prettyprint">Request Hash</code>, for check autorization status and <strong>QR-code</strong> URL image for showing on your application.</p>
+
+<p><code class="prettyprint">Method: POST</code></p>
+
+<p><code class="prettyprint">API Endpoint: https://api.pushauth.io/qr/show</code></p>
+
+<p><code class="prettyprint">Content-Type: application/json</code></p>
+
+<table><thead>
+<tr>
+<th>Type</th>
+<th>Param</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>json array</td>
+<td>image</td>
+<td>All available parameters for image customize</td>
+</tr>
+<tr>
+<td>string or integer</td>
+<td>size</td>
+<td>Image size in px.</td>
+</tr>
+<tr>
+<td>string</td>
+<td>color</td>
+<td>Image color in RGB.</td>
+</tr>
+<tr>
+<td>string</td>
+<td>backgroundColor</td>
+<td>Image background color in RGB.</td>
+</tr>
+<tr>
+<td>string or integer</td>
+<td>margin</td>
+<td>QR margin at image (1..10)</td>
+</tr>
+</tbody></table>
+
+<h2 id="response">Response</h2>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"data"</span><span class="p">:</span><span class="s2">"YlRyencwNUU0b2NvTXFPUTl5alhheXlpZnhoTVNqZFhSVWJYd.29OakpvYmFkajZTYjdTejdOR2Vicnp4dDN2WC51MoZQEoQAwnbw2RGb6Dvq"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Decoded <strong>data</strong> parameter:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"req_hash"</span><span class="p">:</span><span class="s2">"12345678901234567890123456789012"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"qr_url"</span><span class="p">:</span><span class="s2">"https://api.pushauth.io/qr/show/image/somelongstringinbase64"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>The response show <code class="prettyprint">Request Hash</code> and <code class="prettyprint">URL</code> to QR code image.</p>
+
+<p><code class="prettyprint">Content-Type: application/json</code></p>
+
+<p><code class="prettyprint">Response Code: 200 OK</code></p>
+
+<table><thead>
+<tr>
+<th>Type</th>
+<th>Param</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>string</td>
+<td>req_hash</td>
+<td>Request hash for check state.</td>
+</tr>
+<tr>
+<td>string</td>
+<td>qr_url</td>
+<td>URL to QR-image.</td>
+</tr>
+</tbody></table>
+
+<h1 id="check-request-status">Check request status</h1>
+
+<h2 id="request">Request</h2>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"pk"</span><span class="p">:</span><span class="s2">"56a24f5f9ee389dd88e4e071ce7fe67a"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"data"</span><span class="p">:</span><span class="s2">"YlRyencwNUU0b2NvTXFPUTl5alhheXlpZnhoTVNqZFhSVWJYd29Oak.pvYmFkajZTYjdTejdOR2Vicnp4dDN2WC51MoZQEoQAwnbw2RGb6Dvq"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Decoded <strong>data</strong> parameter:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"req_hash"</span><span class="p">:</span><span class="s2">"someUniqReqHash"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>After the successful push request for authorization has been successfully sent, you can request the status of the authorization request using the previously obtained authorization request hash.</p>
+
+<p><code class="prettyprint">Method: POST</code></p>
+
+<p><code class="prettyprint">API Endpoint: https://api.pushauth.io/push/status</code></p>
+
+<p><code class="prettyprint">Content-Type: application/json</code></p>
+
+<table><thead>
+<tr>
+<th>Type</th>
+<th>Param</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>string</td>
+<td>pk</td>
+<td>Your application public key.</td>
+</tr>
+<tr>
+<td>string</td>
+<td>data</td>
+<td>JSON-encoded data.</td>
+</tr>
+<tr>
+<td>string</td>
+<td>req_hash</td>
+<td>A unique authorization request hash, through which you can check the status of the authorization request.</td>
+</tr>
+</tbody></table>
+
+<h2 id="response">Response</h2>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"data"</span><span class="p">:</span><span class="s2">"YlRyencwNUU0b2NvTXFPUTl5alhheXlpZnhoTVNqZFhSVWJYd.29OakpvYmFkajZTYjdTejdOR2Vicnp4dDN2WC51MoZQEoQAwnbw2RGb6Dvq"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Decoded <strong>data</strong> parameter:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"answered"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+</span><span class="s2">"answer"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+</span><span class="s2">"response_code"</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span><span class="w">
+</span><span class="s2">"response_message"</span><span class="p">:</span><span class="s2">"Ok message!"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"response_dt"</span><span class="p">:</span><span class="mi">1234567</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>The response from the server will be with the code 200 if the request is processed successfully, otherwise - see the error code.</p>
+
+<p><code class="prettyprint">Content-Type: application/json</code></p>
+
+<p><code class="prettyprint">Response Code: 200 OK</code></p>
+
+<table><thead>
+<tr>
+<th>Type</th>
+<th>Param</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>string</td>
+<td>data</td>
+<td>Encoded data string</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>answered</td>
+<td>Status of client device response, <code class="prettyprint">true</code>- if response exists, <code class="prettyprint">false</code> - if not exists.</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>answer</td>
+<td>Response answer, <code class="prettyprint">true</code> - if client clicked yes, <code class="prettyprint">false</code> - if clicked no.</td>
+</tr>
+<tr>
+<td>integer</td>
+<td>response_code</td>
+<td>Code of response</td>
+</tr>
+<tr>
+<td>string</td>
+<td>response_message</td>
+<td>Response message</td>
+</tr>
+<tr>
+<td>integer</td>
+<td>response_dt</td>
+<td>Date and time of client response. format <code class="prettyprint">UNIX_TIMESTAMP</code> in UTC.</td>
+</tr>
+</tbody></table>
+
+<h1 id="errors">Errors</h1>
+
+<p>This section describes the basic error codes for response. If the code is 4xx or 5xx, then most likely there will be json values: status_code and message.</p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">200</code> OK</td>
+<td>Successfully processed request</td>
+</tr>
+<tr>
+<td><code class="prettyprint">403</code> Access Denied</td>
+<td>Access is denied, the user or device may be locked</td>
+</tr>
+<tr>
+<td><code class="prettyprint">404</code> Not Found</td>
+<td>Not found</td>
+</tr>
+<tr>
+<td><code class="prettyprint">405</code> Method Not Allowed</td>
+<td>The request was not sent by that method (POST/GET/PATCH/DELETE)</td>
+</tr>
+<tr>
+<td><code class="prettyprint">422</code> Unprocessable Entity</td>
+<td>Error in request parameter</td>
+</tr>
+<tr>
+<td><code class="prettyprint">500</code> Internal Server Error</td>
+<td>Error in server side</td>
+</tr>
+</tbody></table>
+
+<h1 id="web-hooks">Web-hooks</h1>
+
+<p>You can use Web hooks service. After client actions on mobile app, we send POST request to your server.</p>
+
+<p><code class="prettyprint">Content-Type: application/json</code> </p>
+
+<p>or </p>
+
+<p><code class="prettyprint">Content-Type: application/x-www-form-urlencoded</code> </p>
+
+<p><code class="prettyprint">Method: POST</code></p>
+
+<p>Your server response code must be <code class="prettyprint">200</code>.</p>
+
+<h2 id="qr-code">QR-code</h2>
+<pre class="highlight plaintext"><code>[hook] =&gt; Array
+        (
+            [event] =&gt; client_read_qrcode
+            [timestamp] =&gt; 1500670315
+            [data] =&gt; eyJyZXFfaGFzaCI6InRlc3QtZGF0YSIsImFwcF9wdWJsaWNfa2V5IjoiQXRUSlBwN0NKcm5uSUp0UlRZdWg2Y0hYOFhDMVJXZE8iLCJhcHBfbmFtZSI6IlRlc3RBcHAiLCJjbGllbnRfZW1haWwiOiJ0ZXN0LWRhdGEiLCJjbGllbnRfcGxhdGZvcm0iOiJ0ZXN0LWRhdGEiLCJyZXNwb25zZV90aW1lc3RhbXAiOjE1MDA2NzAzMTV9
+            [signature] =&gt; pMAoZe0D+9AiAaZ0Kn+JqeiM1RZ9f+6nl2QaYsDpZh0=
+        )
+</code></pre>
+<blockquote>
+<p>Decoded <strong>data</strong> parameter:</p>
+</blockquote>
+<pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="p">[</span>
+            <span class="s1">'req_hash'</span><span class="o">=&gt;</span><span class="s1">'1234567890asqqwertyuiopASDFGHJKL'</span><span class="p">,</span>
+            <span class="s1">'app_public_key'</span><span class="o">=&gt;</span><span class="s1">'app_public_key'</span><span class="p">,</span>
+            <span class="s1">'app_name'</span><span class="o">=&gt;</span><span class="s1">'app_name'</span><span class="p">,</span>
+            <span class="s1">'client_email'</span><span class="o">=&gt;</span><span class="s1">'client@example.com'</span><span class="p">,</span>
+            <span class="s1">'client_platform'</span><span class="o">=&gt;</span><span class="s1">'ios'</span><span class="p">,</span>
+            <span class="s1">'response_timestamp'</span><span class="o">=&gt;</span><span class="mi">1500670315</span>
+        <span class="p">]</span>
+</code></pre>
+<p>Event, when client used QR-code from your site.</p>
+
+<table><thead>
+<tr>
+<th>Type</th>
+<th>Param</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>string</td>
+<td>event</td>
+<td>Event identificator</td>
+</tr>
+<tr>
+<td>integer</td>
+<td>timestamp</td>
+<td>Date and time of client action. Format <code class="prettyprint">UNIX_TIMESTAMP</code> in UTC.</td>
+</tr>
+<tr>
+<td>string</td>
+<td>data</td>
+<td>Encoded in BASE64 json data</td>
+</tr>
+<tr>
+<td>string</td>
+<td>signature</td>
+<td>HMAC hash of <code class="prettyprint">data</code> parameter</td>
+</tr>
+</tbody></table>
+
+<p>Decoded <strong>data</strong> parameter:</p>
+
+<table><thead>
+<tr>
+<th>Type</th>
+<th>Param</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>string</td>
+<td>req_hash</td>
+<td>Unique request hash</td>
+</tr>
+<tr>
+<td>string</td>
+<td>app_public_key</td>
+<td>Application public key</td>
+</tr>
+<tr>
+<td>string</td>
+<td>app_name</td>
+<td>Application name</td>
+</tr>
+<tr>
+<td>string</td>
+<td>client_email</td>
+<td>Client email address</td>
+</tr>
+<tr>
+<td>string</td>
+<td>client_platform</td>
+<td>Client device platform</td>
+</tr>
+<tr>
+<td>integer</td>
+<td>timestamp</td>
+<td>Date and time of client action. Format <code class="prettyprint">UNIX_TIMESTAMP</code> in UTC.</td>
+</tr>
+</tbody></table>
+
+<h2 id="push-request">Push request</h2>
+<pre class="highlight plaintext"><code>[hook] =&gt; Array
+        (
+            [event] =&gt; client_push_answer
+            [timestamp] =&gt; 1500670315
+            [data] =&gt; eyJyZXFfaGFzaCI6InRlc3QtZGF0YSIsImFwcF9wdWJsaWNfa2V5IjoiQXRUSlBwN0NKcm5uSUp0UlRZdWg2Y0hYOFhDMVJXZE8iLCJhcHBfbmFtZSI6IlRlc3RBcHAiLCJjbGllbnRfZW1haWwiOiJ0ZXN0LWRhdGEiLCJjbGllbnRfcGxhdGZvcm0iOiJ0ZXN0LWRhdGEiLCJyZXNwb25zZV90aW1lc3RhbXAiOjE1MDA2NzAzMTV9
+            [signature] =&gt; pMAoZe0D+9AiAaZ0Kn+JqeiM1RZ9f+6nl2QaYsDpZh0=
+        )
+</code></pre>
+<blockquote>
+<p>Decoded <strong>data</strong> parameter:</p>
+</blockquote>
+<pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="p">[</span>
+            <span class="s1">'req_hash'</span><span class="o">=&gt;</span><span class="s1">'1234567890asqqwertyuiopASDFGHJKL'</span><span class="p">,</span>
+            <span class="s1">'app_public_key'</span><span class="o">=&gt;</span><span class="s1">'app_public_key'</span><span class="p">,</span>
+            <span class="s1">'app_name'</span><span class="o">=&gt;</span><span class="s1">'app_name'</span><span class="p">,</span>
+            <span class="s1">'answer'</span><span class="o">=&gt;</span><span class="s1">'true'</span><span class="p">,</span>
+            <span class="s1">'client_email'</span><span class="o">=&gt;</span><span class="s1">'client@example.com'</span><span class="p">,</span>
+            <span class="s1">'client_platform'</span><span class="o">=&gt;</span><span class="s1">'ios'</span><span class="p">,</span>
+            <span class="s1">'response_timestamp'</span><span class="o">=&gt;</span><span class="mi">1500670315</span>
+        <span class="p">]</span>
+</code></pre>
+<p>Event, when client answer &ldquo;yes&rdquo; or &ldquo;no&rdquo; on Push in mobile application.</p>
+
+<table><thead>
+<tr>
+<th>Type</th>
+<th>Param</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>string</td>
+<td>event</td>
+<td>Event identificator</td>
+</tr>
+<tr>
+<td>integer</td>
+<td>timestamp</td>
+<td>Date and time of client action. Format <code class="prettyprint">UNIX_TIMESTAMP</code> in UTC.</td>
+</tr>
+<tr>
+<td>string</td>
+<td>data</td>
+<td>Encoded in BASE64 json data</td>
+</tr>
+<tr>
+<td>string</td>
+<td>signature</td>
+<td>HMAC hash of <code class="prettyprint">data</code> parameter</td>
+</tr>
+</tbody></table>
+
+<p>Decoded <strong>data</strong> parameter:</p>
+
+<table><thead>
+<tr>
+<th>Type</th>
+<th>Param</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>string</td>
+<td>req_hash</td>
+<td>Unique request hash</td>
+</tr>
+<tr>
+<td>string</td>
+<td>app_public_key</td>
+<td>Application public key</td>
+</tr>
+<tr>
+<td>string</td>
+<td>app_name</td>
+<td>Application name</td>
+</tr>
+<tr>
+<td>string</td>
+<td>answer</td>
+<td>Request answer</td>
+</tr>
+<tr>
+<td>string</td>
+<td>client_email</td>
+<td>Client email address</td>
+</tr>
+<tr>
+<td>string</td>
+<td>client_platform</td>
+<td>Client device platform</td>
+</tr>
+<tr>
+<td>integer</td>
+<td>timestamp</td>
+<td>Date and time of client action. Format <code class="prettyprint">UNIX_TIMESTAMP</code> in UTC.</td>
+</tr>
+</tbody></table>
+
+<h2 id="timeout">Timeout</h2>
+
+<p>This hook will be fired when Push request expired, (after 30 second user has no action in mobile app).</p>
+<pre class="highlight plaintext"><code>[hook] =&gt; Array
+        (
+            [event] =&gt; client_response_timeout
+            [timestamp] =&gt; 1500670315
+            [data] =&gt; eyJyZXFfaGFzaCI6InRlc3QtZGF0YSIsImFwcF9wdWJsaWNfa2V5IjoiQXRUSlBwN0NKcm5uSUp0UlRZdWg2Y0hYOFhDMVJXZE8iLCJhcHBfbmFtZSI6IlRlc3RBcHAiLCJjbGllbnRfZW1haWwiOiJ0ZXN0LWRhdGEiLCJjbGllbnRfcGxhdGZvcm0iOiJ0ZXN0LWRhdGEiLCJyZXNwb25zZV90aW1lc3RhbXAiOjE1MDA2NzAzMTV9
+            [signature] =&gt; pMAoZe0D+9AiAaZ0Kn+JqeiM1RZ9f+6nl2QaYsDpZh0=
+        )
+</code></pre>
+<blockquote>
+<p>Decoded <strong>data</strong> parameter:</p>
+</blockquote>
+<pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="p">[</span>
+            <span class="s1">'req_hash'</span><span class="o">=&gt;</span><span class="s1">'1234567890asqqwertyuiopASDFGHJKL'</span><span class="p">,</span>
+            <span class="s1">'app_public_key'</span><span class="o">=&gt;</span><span class="s1">'app_public_key'</span><span class="p">,</span>
+            <span class="s1">'app_name'</span><span class="o">=&gt;</span><span class="s1">'app_name'</span><span class="p">,</span>
+            <span class="s1">'client_email'</span><span class="o">=&gt;</span><span class="s1">'client@example.com'</span><span class="p">,</span>
+            <span class="s1">'client_platform'</span><span class="o">=&gt;</span><span class="s1">'ios'</span><span class="p">,</span>
+            <span class="s1">'response_timestamp'</span><span class="o">=&gt;</span><span class="mi">1500670315</span>
+        <span class="p">]</span>
+</code></pre>
+<p>Event, when client answer &ldquo;yes&rdquo; or &ldquo;no&rdquo; on Push in mobile application.</p>
+
+<table><thead>
+<tr>
+<th>Type</th>
+<th>Param</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>string</td>
+<td>event</td>
+<td>Event identificator</td>
+</tr>
+<tr>
+<td>integer</td>
+<td>timestamp</td>
+<td>Date and time of client action. Format <code class="prettyprint">UNIX_TIMESTAMP</code> in UTC.</td>
+</tr>
+<tr>
+<td>string</td>
+<td>data</td>
+<td>Encoded in BASE64 json data</td>
+</tr>
+<tr>
+<td>string</td>
+<td>signature</td>
+<td>HMAC hash of <code class="prettyprint">data</code> parameter</td>
+</tr>
+</tbody></table>
+
+<p>Decoded <strong>data</strong> parameter:</p>
+
+<table><thead>
+<tr>
+<th>Type</th>
+<th>Param</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>string</td>
+<td>req_hash</td>
+<td>Unique request hash</td>
+</tr>
+<tr>
+<td>string</td>
+<td>app_public_key</td>
+<td>Application public key</td>
+</tr>
+<tr>
+<td>string</td>
+<td>app_name</td>
+<td>Application name</td>
+</tr>
+<tr>
+<td>string</td>
+<td>client_email</td>
+<td>Client email address</td>
+</tr>
+<tr>
+<td>string</td>
+<td>client_platform</td>
+<td>Client device platform</td>
+</tr>
+<tr>
+<td>integer</td>
+<td>timestamp</td>
+<td>Date and time of client action. Format <code class="prettyprint">UNIX_TIMESTAMP</code> in UTC.</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="php">PHP</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>

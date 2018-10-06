@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: PushAuth
+        psr4_prefix: PushAuth
+        src_path: app

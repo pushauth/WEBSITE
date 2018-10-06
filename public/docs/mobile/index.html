@@ -1,0 +1,1589 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+    <title>PushAuth API</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="assets/plugins/prism/prism.css">
+    <link rel="stylesheet" href="assets/plugins/elegant_font/css/style.css">
+
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body class="body-green">
+<div class="page-wrapper">
+    <!-- ******Header****** -->
+    <header id="header" class="header">
+        <div class="container">
+            <div class="branding">
+                <h1 class="logo">
+                    <a href="#">
+                        <span aria-hidden="true" class="icon_documents_alt icon"></span>
+                        <span class="text-highlight">PushAuth</span><span class="text-bold">API</span>
+                    </a>
+                </h1>
+            </div><!--//branding-->
+            <ol class="breadcrumb">
+                <li><a href="#">Documentation</a></li>
+                <li class="active">MobileAPI</li>
+            </ol>
+        </div><!--//container-->
+    </header><!--//header-->
+    <div class="doc-wrapper">
+        <div class="container">
+            <div id="doc-header" class="doc-header text-center">
+                <h1 class="doc-title"><i class="icon fa fa-paper-plane"></i> Mobiles, Pads & Watchs</h1>
+                <div class="meta"><i class="fa fa-clock-o"></i> Last updated: 24.05.2017</div>
+            </div><!--//doc-header-->
+            <div class="doc-body">
+                <div class="doc-content">
+                    <div class="content-inner">
+
+                        <section id="mobileapi-section" class="doc-section">
+                            <h2 class="section-title">Mobile API</h2>
+                            <div class="section-block">
+
+                                В данном разделе описаны API для работы мобильных устройств/планшетов/часов с сервером PushAuth.
+
+
+
+                            </div>
+
+                            <div id="auth-section"  class="section-block">
+                                <h2 class="block-title">Авторизация или регистрация устройства</h2>
+                                <div class="section-block">
+
+                                    Данный запрос позволяет авторизировать уже имеющегося пользователя с таким устройством или зарегистрировать нового пользователя либо его устройство на основании одного лишь <span class="label label-success">email</span>. Этап регистрации проходит через отправку сервером письма со ссылкой для подтверждения.
+                                    После того как регистрация была подтверждена пользователь снова вводит <span class="label label-success">email</span> и уже проходит авторизацию.
+
+
+
+                                </div>
+
+                                <h4 id="auth-send-section" class="block-title">Request</h4>
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        <h6>Method:</h6>
+                                        <p><code>POST</code></p>
+                                    </div>
+                                    <div class="col-md-11">
+                                        <h6>API Endpoint:</h6>
+                                        <p><code>https://api.pushauth.io/auth</code></p>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h6>Content-Type:</h6>
+                                        <p><code>application/json</code></p>
+                                        <div class="code-block">
+                                            <h6>Body request example</h6>
+                                            <pre><code class="language-json">{
+"email":"info@zenlix.com",
+"device_uuid":"UUID_NUMBER",
+"device_token":"ToKeN",
+"device_type":"ios",
+"device_name":"IPhone\' Jimmy",
+"device_vendor":"IPhone 6S GOLD 32Gb",
+"device_os_detail":"iOS 11.0.1 beta"
+}</code></pre>
+                                        </div><!--//code-block-->
+
+                                    </div>
+                                    <div class="col-md-6">
+
+
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                <tr>
+                                                    <th>Type</th>
+                                                    <th>Param</th>
+                                                    <th>Description</th>
+
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td><span class="label label-default">string</span></td>
+                                                    <th>email</th>
+                                                    <td>Адрес email, который вводится в поле при авторизации/регистрации</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="label label-default">string</span></td>
+                                                    <th>device_uuid</th>
+                                                    <td>Уникальный UUID-устройства, по нему идёт идентификация устройства</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="label label-default">string</span></td>
+                                                    <th>device_token</th>
+                                                    <td>Token устройства, адрес на который будет отправляться PUSH</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="label label-default">string</span></td>
+                                                    <th>device_type</th>
+                                                    <td>Тип устройства, допускается два типа: <strong>ios</strong> или <strong>android</strong></td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="label label-default">string</span></td>
+                                                    <th>device_name</th>
+                                                    <td>Имя клиентского устройства</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="label label-default">string</span></td>
+                                                    <th>device_vendor</th>
+                                                    <td>Тип устройства/оборудование</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="label label-default">string</span></td>
+                                                    <th>device_os_detail</th>
+                                                    <td>Детали тип и версия ОС</td>
+
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+
+
+                                    </div>
+
+                                </div>
+
+
+                                <hr>
+                                <h4 id="auth-recieve-section" class="block-title">Response</h4>
+                                <div class="section-block">
+
+                                    Ответ от сервера будет с кодом 200, если регистрация или авторизация прошли успешно, в ином случае - смотрите коды ошибок.
+
+
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+
+                                        <h5 class="block-title">Ответ при регистрации</h5>
+
+                                        <div class="col-md-6"><h6>Content-Type:</h6>
+                                            <p><code>application/json</code></p></div>
+                                        <div class="col-md-6"><h6>Response Code:</h6>
+                                            <p><code>200 OK</code></p></div>
+
+
+
+
+                                        <div class="code-block">
+                                            <h6>Body response example</h6>
+
+                                            <pre><code class="language-json">{
+"message":"Please check your email for confirmation!",
+"is_access":false
+}</code></pre>
+
+
+
+                                        </div><!--//code-block-->
+
+                                    </div>
+                                    <div class="col-md-6">
+
+
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                <tr>
+                                                    <th>Type</th>
+                                                    <th>Param</th>
+                                                    <th>Description</th>
+
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td><span class="label label-default">string</span></td>
+                                                    <th>message</th>
+                                                    <td>Текст, в котором содержится объяснение результата запроса</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="label label-default">boolean</span></td>
+                                                    <th>is_access</th>
+                                                    <td>Возможен ли вход/авторизация.</td>
+
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+
+
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="callout-block callout-success">
+                                            <div class="icon-holder">
+                                                <i class="fa fa-thumbs-up"></i>
+                                            </div><!--//icon-holder-->
+                                            <div class="content">
+
+                                                <p>Регистрация прошла успешно - пользователю на <span class="label label-success">email</span> будет выслано письмо со ссылкой для подтверждения. Можно вывести на экран устройства, типа: Please, check you email for finish registration с кнопкой OK, и снова поле ввода email.</p>
+                                            </div><!--//content-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+
+                                        <h5 class="block-title">Ответ при авторизации</h5>
+                                        <div class="col-md-6"><h6>Content-Type:</h6>
+                                            <p><code>application/json</code></p></div>
+                                        <div class="col-md-6"><h6>Response Code:</h6>
+                                            <p><code>200 OK</code></p></div>
+
+
+
+
+                                        <div class="code-block">
+                                            <h6>Body response example</h6>
+
+                                            <pre><code class="language-json">{
+"message":"Auth success!",
+"is_access"=>(boolean)true,
+"public_key":"SomeRandom32lengthString"
+}</code></pre>
+
+
+
+                                        </div><!--//code-block-->
+
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                <tr>
+                                                    <th>Type</th>
+                                                    <th>Param</th>
+                                                    <th>Description</th>
+
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td><span class="label label-default">string</span></td>
+                                                    <th>message</th>
+                                                    <td>Текст, в котором содержится объяснение результата запроса</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="label label-default">string</span></td>
+                                                    <th>public_key</th>
+                                                    <td>Публичный ключ, который используется для идентификации устройства на сервере, его можно передавать в открытом виде. Его необходимо хранить.</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="label label-default">boolean</span></td>
+                                                    <th>is_access</th>
+                                                    <td>Возможен ли вход/авторизация.</td>
+
+                                                </tr>
+                                                <!--
+                                                <tr>
+                                                    <td><span class="label label-default">json</span></td>
+                                                    <th>dh_data</th>
+                                                    <td>JSON-массив, в котором содержатся значения для генерации своего персонального ключа</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="label label-default">integer</span></td>
+                                                    <th>val_g</th>
+                                                    <td>Является простым числом, полученным на основании val_g (первообразным корнем по модулю p)</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="label label-default">integer</span></td>
+                                                    <th>val_p</th>
+                                                    <td>Является случайным простым числом</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="label label-default">integer</span></td>
+                                                    <th>val_ak</th>
+                                                    <td>Является простым числом, полученным на основании вычислений: <span class="label label-success">val_g</span> возведение в степень персонального случайного числа стороны сервера и результат mod <span class="label label-success">val_p</span></td>
+
+                                                </tr>-->
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="callout-block callout-success">
+                                            <div class="icon-holder">
+                                                <i class="fa fa-thumbs-up"></i>
+                                            </div><!--//icon-holder-->
+                                            <div class="content">
+
+                                                <p>Авторизация прошла успешно. Далее через Push Service будет отправлен push, в котором будет содержаться параметр <span class="label label-default">private_key</span>. Его необходимо хранить, по скольку это является личный приватный ключ, который используется для подписи HMAC.</p>
+                                            </div><!--//content-->
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+
+                                        <h5 class="block-title">Ответ при ошибке (указан не корректный email)</h5>
+                                        <div class="col-md-6"><h6>Content-Type:</h6>
+                                            <p><code>application/json</code></p></div>
+                                        <div class="col-md-6"><h6>Response Code:</h6>
+                                            <p><code>422 Unprocessable Entity</code></p></div>
+
+
+
+
+                                        <div class="code-block">
+                                            <h6>Body response example</h6>
+
+                                            <pre><code class="language-json">{
+"message":"Validating error.",
+"errors":{
+"email":["The email must be a valid email address."]
+},
+"status_code":422
+}</code></pre>
+
+
+
+                                        </div><!--//code-block-->
+
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                <tr>
+                                                    <th>Type</th>
+                                                    <th>Param</th>
+                                                    <th>Description</th>
+
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td><span class="label label-default">string</span></td>
+                                                    <th>message</th>
+                                                    <td>Текст, в котором содержится объяснение результата запроса</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="label label-default">json</span></td>
+                                                    <th>errors</th>
+                                                    <td>JSON-массив, в котором содержатся объекты с массивом ошибок</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="label label-default">integer</span></td>
+                                                    <th>status_code</th>
+                                                    <td>Код ошибки</td>
+
+                                                </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="callout-block callout-danger">
+                                            <div class="icon-holder">
+                                                <i class="fa fa-exclamation-triangle"></i>
+                                            </div><!--//icon-holder-->
+                                            <div class="content">
+
+                                                <p>В процессе регистрации/авторизации сервер вернул ошибку. Ошибкой расцениваются все ответы, код которых не 200</p>
+                                            </div><!--//content-->
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+
+
+                            </div>
+
+</section>
+                    </div><!--//section-block-->
+
+                    <div id="push-section"  class="section-block">
+                        <h2 id="push-recieve-section" class="block-title">Приём push-сообщений</h2>
+                        <div class="section-block">
+
+                            Все данные, полученные через PUSH, в открытом виде и содержат информацию, которая инициализирует то или иное действие на устройстве: показывает сообщение с таймером для подтверждения входа/выхода, либо просто сообщение с кодом, без ожидания каких-либо действий от пользователя.
+
+
+
+                        </div>
+                        <h4 class="block-title">PUSH</h4>
+                        <div class="section-block">
+
+                            В теле содержится параметр <span class="label label-success">data</span>, который содержит json-данные.
+
+
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+
+                                <h5 class="block-title"></h5>
+
+                                <div class="col-md-12"><h6>Content-Type:</h6>
+                                    <p><code>application/json</code></p></div>
+
+
+
+
+
+                                <div class="code-block">
+                                    <h6>Push body example</h6>
+
+                                    <pre><code class="language-json">{
+"req_hash":"someReqHashStr",
+"mode":"push",
+"code":"123-456",
+"app_name":"Facebook"
+}</code></pre>
+
+
+
+                                </div><!--//code-block-->
+
+                            </div>
+                            <div class="col-md-6">
+
+
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Type</th>
+                                            <th>Param</th>
+                                            <th>Description</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td><span class="label label-default">string</span></td>
+                                            <th>req_hash</th>
+                                            <td>Уникальный идентификатор запроса</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="label label-default">string</span></td>
+                                            <th>mode</th>
+                                            <td>Режим отображения Push. Может принимать значения: <span class="label label-success">push</span> или <span class="label label-success">code</span>. Значение <span class="label label-success">push</span> - необходимо пользователя спросить, напр: войти ли в сервис с вариантами ответа: да/нет. Значение <span class="label label-success">code</span> - необходимо только отобразить код для входа, с параметра code</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="label label-default">string</span></td>
+                                            <th>code</th>
+                                            <td>Код, который присылает сервис через сервер для того, что бы клиент его ввёл на сайте для авторизации.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="label label-default">string</span></td>
+                                            <th>app_name</th>
+                                            <td>Название сервиса, для того что бы пользователь понимал, куда ему запрашивается войти.</td>
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+
+                            </div>
+
+
+                            <div class="col-md-12">
+                                <h3 id="push-math-section" class="block-title">После получения push</h3>
+                                <div class="section-block">
+
+                                    После успешного получения push, необходимо определить параметр <span class="label label-success">mode</span>, от которого зависит дальнейший алгоритм действий.
+
+                                    <h4>Очерёдность действий если параметр <span class="label label-success">mode</span> указан как <span class="label label-success">push</span></h4>
+                                    <ol class="list">
+                                        <li>Необходимо вывести диалоговое сообщение, в котором должен быть таймер с 30-тью секундами на ответ и вопрос, Вы подтверждаете вход на <span class="label label-success">[название сервиса]</span> </li>
+
+                                        <li>Ответ может быть ввиде кнопок: Да/Нет</li>
+
+                                        <li>После нажатия на кнопку, отправить запрос на сервер (см ниже).
+                                        </li>
+
+                                        <li>
+                                            Если ответ не дан на протяжении 30 сек, отправить запрос на сервер (см ниже).
+
+                                        </li>
+                                        <li>По истичению 30 сек, спрятать сообщение</li>
+                                    </ol>
+                                    <h4>Очерёдность действий если параметр <span class="label label-success">mode</span> указан как <span class="label label-success">code</span></h4>
+                                    <ol class="list">
+                                        <li>Необходимо вывести сообщение,в котором должен быть таймер с 30-тью секундами и напр текст: Ваш код авторизации code для входа на app_name </li>
+                                        <li>Сразу отправить запрос на сервер (см ниже).</li>
+                                        <li>
+                                            По истичению 30 сек, спрятать сообщение.
+
+                                        </li>
+                                    </ol>
+
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+                        </div>
+
+
+
+
+
+
+
+                    </div>
+
+
+
+                    <div id="push-send-section"  class="section-block">
+                        <h2 class="block-title">Отправка ответа на Push</h2>
+                        <div class="section-block">
+
+                            После получения Push, необходимо отправить запрос на сервер. Сделав это либо сразу после получения push, в случае с параметром mode=code, либо по действию ответа пользователя/истечению времени ожидания ответа в случае с режимом push.
+
+
+                        </div>
+                        <h4 class="block-title">Формирования тела ответа</h4>
+                        <div class="row">
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <h6>Method:</h6>
+                                    <p><code>POST</code></p>
+                                </div>
+                                <div class="col-md-11">
+                                    <h6>API Endpoint:</h6>
+                                    <p><code>https://api.pushauth.io/push/answer</code></p>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="code-block">
+                                        <h6>Body example</h6>
+                                        <pre><code class="language-json">{
+"pk":"56a24f5f9ee389dd88e4e071ce7fe67a",
+"data":"YlRyencwNUU0b2NvTXFPUTl5alhheXlpZnhoTVNqZFhSVWJYd29Oa.kpvYmFkajZTYjdTejdOR2Vicnp4dDN2WC51MoZQEoQAwnbw2RGb6Dvq"
+}</code></pre>
+                                    </div><!--//code-block-->
+
+
+
+                                    <div class="code-block">
+                                        <h6><span class="label label-success">data</span> decoded json</h6>
+                                        <pre><code class="language-json">{
+"hash":"RequestHashString",
+"answer":true
+}</code></pre>
+                                    </div><!--//code-block-->
+
+                                </div>
+                                <div class="col-md-6">
+
+
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th>Type</th>
+                                                <th>Param</th>
+                                                <th>Description</th>
+
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td><span class="label label-default">string</span></td>
+                                                <th>pk</th>
+                                                <td>Ваш уникальный публичный ключ</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td><span class="label label-default">json</span></td>
+                                                <th>data</th>
+                                                <td>Закодированая json-строка. Cм ниже</td>
+
+                                            </tr>
+
+                                            <tr>
+                                                <td><span class="label label-default">boolean</span></td>
+                                                <th>answer</th>
+                                                <td>Ответ на push, может принимать значения <span class="label label-success">true</span> или <span class="label label-success">false</span> (BOOLEAN)</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td><span class="label label-default">string</span></td>
+                                                <th>hash</th>
+                                                <td>Уникальный идентификатор запроса, который содержится в push: <span class="label label-success">req_hash</span></td>
+
+                                            </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+
+
+                                </div>
+
+
+                                <div class="col-md-12">
+                                    <h3 id="push-encode-section" class="block-title">Алгоритм кодирования строки</h3>
+                                    <div class="section-block">
+
+                                        После успешной авторизации и приёма push, нам доступен приватный ключ. Мы будем использовать его для подписи данных
+
+                                        <h4>Очерёдность действий</h4>
+                                        <ol class="list">
+                                            <li>
+                                                Кодированная строка состоит из двух символьных значений, которые соеденены знаком точкой. (Напр: dataInBase64.hmacInBase64).
+                                            </li>
+                                            <li>
+                                                Что бы получить первую часть, закодируем наши данные json в base64.
+                                            </li>
+
+                                            <li>
+                                            Для генерации второй части, создадим HMAC, используя значение из первой части, наш приватный ключ и алгоритм sha256. Напр hash_hmac('sha256', data, private_key). Полученные данные закодируем в base64.
+                                            </li>
+
+                                            <li>
+                                                В итоге две строки соединяем знаком точка.
+                                            </li>
+
+
+
+
+
+
+
+                                        </ol>
+
+
+                                    </div>
+
+
+                                </div>
+
+
+
+
+
+
+
+                                <!--
+                                START
+                                -->
+
+                                <div class="col-md-12">
+                                    <h3 id="push-applist-section" class="block-title">Запрос на список PUSH</h3>
+                                    <div class="section-block">
+
+                                       Запрос отображает список запросов на авторизацию, за последнюю минуту.
+
+
+                                    </div>
+
+                                    <h4 class="block-title">Request</h4>
+                                    <div class="row">
+                                        <div class="col-md-1">
+                                            <h6>Method:</h6>
+                                            <p><code>POST</code></p>
+                                        </div>
+                                        <div class="col-md-11">
+                                            <h6>API Endpoint:</h6>
+                                            <p><code>https://api.pushauth.io/push/index</code></p>
+                                        </div>
+
+                                    </div>
+
+
+
+
+
+
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h6>Content-Type:</h6>
+                                            <p><code>application/json</code></p>
+                                            <div class="code-block">
+                                                <h6>Body request example</h6>
+                                                <pre><code class="language-json">{
+"pk":"DevicePublicKey",
+"data":"YlRyencwNUU0b2NvTXFPUTl5alhheXlpZnhoTVNqZFhSVWJYd29Oa.kpvYmFkajZTYjdTejdOR2Vicnp4dDN2WC51MoZQEoQAwnbw2RGb6Dvq"
+}</code></pre>
+                                            </div><!--//code-block-->
+
+                                        </div>
+                                        <div class="col-md-6">
+
+
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>Type</th>
+                                                        <th>Param</th>
+                                                        <th>Description</th>
+
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td><span class="label label-default">string</span></td>
+                                                        <th>pk</th>
+                                                        <td>Публичный ключ устройства</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="label label-default">string</span></td>
+                                                        <th>data</th>
+                                                        <td>Любое base64-закодированное значение(строка), подписанное HMAC приватным ключём устройства.</td>
+
+                                                    </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+
+
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <hr>
+                                    <h4 class="block-title">Response</h4>
+                                    <div class="section-block">
+
+                                        Ответ от сервера со списком запросов на авторизацию за последнюю минуту.
+
+
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+
+                                            <h5 class="block-title">Ответ</h5>
+
+                                            <div class="col-md-6"><h6>Content-Type:</h6>
+                                                <p><code>application/json</code></p></div>
+                                            <div class="col-md-6"><h6>Response Code:</h6>
+                                                <p><code>200 OK</code></p></div>
+
+
+
+
+                                            <div class="code-block">
+                                                <h6>Body response example</h6>
+
+                                                <pre><code class="language-json">{
+"data":"YlRyencwNUU0b2NvTXFPUTl5alhheXlpZnhoTVNqZFhSVWJYd29Oa.kpvYmFkajZTYjdTejdOR2Vicnp4dDN2WC51MoZQEoQAwnbw2RGb6Dvq"
+}</code></pre>
+
+
+
+                                            </div><!--//code-block-->
+                                            <div class="code-block">
+                                                <h6><span class="label label-success">data</span> decoded json</h6>
+                                                <pre><code class="language-json">{
+"total":2,
+"index":[
+ {"req_hash":"UJWM6zV8BVTTtNo15KxfUsSbs88AsRLT",
+  "mode":"push",
+  "code":null,
+  "app_name":"ZENLIX"},
+ {"req_hash":"1Mhl4YvkDCr8WRLtsjKhwvpl64WztTVN",
+  "mode":"push",
+  "code":null,
+  "app_name":"zenlix"}...]
+}</code></pre>
+                                            </div><!--//code-block-->
+                                        </div>
+                                        <div class="col-md-6">
+
+
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>Type</th>
+                                                        <th>Param</th>
+                                                        <th>Description</th>
+
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td><span class="label label-default">string</span></td>
+                                                        <th>data</th>
+                                                        <td>Закодированная строка данных</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="label label-default">integer</span></td>
+                                                        <th>total</th>
+                                                        <td>Количество записей</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="label label-default">json</span></td>
+                                                        <th>index</th>
+                                                        <td>Список записей</td>
+
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td><span class="label label-default">string</span></td>
+                                                        <th>req_hash</th>
+                                                        <td>Уникальный идентификатор запроса</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="label label-default">string</span></td>
+                                                        <th>mode</th>
+                                                        <td>Режим отображения Push. Может принимать значения: <span class="label label-success">push</span> или <span class="label label-success">code</span>. Значение <span class="label label-success">push</span> - необходимо пользователя спросить, напр: войти ли в сервис с вариантами ответа: да/нет. Значение <span class="label label-success">code</span> - необходимо только отобразить код для входа, с параметра code</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="label label-default">string</span></td>
+                                                        <th>code</th>
+                                                        <td>Код, который присылает сервис через сервер для того, что бы клиент его ввёл на сайте для авторизации.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="label label-default">string</span></td>
+                                                        <th>app_name</th>
+                                                        <td>Название сервиса, для того что бы пользователь понимал, куда ему запрашивается войти.</td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+
+
+                                        </div>
+
+                                    </div>
+
+
+
+
+
+                                </div>
+                                <!--STOP -->
+
+
+
+
+
+                                <div class="col-md-12">
+                                    <h3 id="push-appinfo-section" class="block-title">Запрос на информацию об App</h3>
+                                    <div class="section-block">
+
+                                        Запрос отображает информацию о сервисе (App), который прислал запрос.
+
+
+                                    </div>
+
+                                    <h4 class="block-title">Request</h4>
+                                    <div class="row">
+                                        <div class="col-md-1">
+                                            <h6>Method:</h6>
+                                            <p><code>POST</code></p>
+                                        </div>
+                                        <div class="col-md-11">
+                                            <h6>API Endpoint:</h6>
+                                            <p><code>https://api.pushauth.io/app/info</code></p>
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h6>Content-Type:</h6>
+                                            <p><code>application/json</code></p>
+                                            <div class="code-block">
+                                                <h6>Body request example</h6>
+                                                <pre><code class="language-json">{
+"pk":"DevicePublicKey",
+"data":"YlRyencwNUU0b2NvTXFPUTl5alhheXlpZnhoTVNqZFhSVWJYd29Oa.kpvYmFkajZTYjdTejdOR2Vicnp4dDN2WC51MoZQEoQAwnbw2RGb6Dvq"
+}</code></pre>
+                                            </div><!--//code-block-->
+                                            <div class="code-block">
+                                                <h6><span class="label label-success">data</span> decoded json</h6>
+                                                <pre><code class="language-json">{
+"req_hash":"UJWM6zV8BVTTtNo15KxfUsSbs88AsRLT"
+}</code></pre>
+                                            </div><!--//code-block-->
+
+                                        </div>
+                                        <div class="col-md-6">
+
+
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>Type</th>
+                                                        <th>Param</th>
+                                                        <th>Description</th>
+
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td><span class="label label-default">string</span></td>
+                                                        <th>req_hash</th>
+                                                        <td>Уникальный идентификатор запроса, который можно получить из списка запросов на авторизацию или от Push.</td>
+
+                                                    </tr>
+
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+
+
+                                        </div>
+
+                                    </div>
+
+
+
+
+                                    <hr>
+                                    <h4 class="block-title">Response</h4>
+                                    <div class="section-block">
+
+                                        Ответ от сервера с информацией об App
+
+
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+
+                                            <h5 class="block-title">Ответ</h5>
+
+                                            <div class="col-md-6"><h6>Content-Type:</h6>
+                                                <p><code>application/json</code></p></div>
+                                            <div class="col-md-6"><h6>Response Code:</h6>
+                                                <p><code>200 OK</code></p></div>
+
+
+
+
+                                            <div class="code-block">
+                                                <h6>Body response example</h6>
+
+                                                <pre><code class="language-json">{
+"data":"YlRyencwNUU0b2NvTXFPUTl5alhheXlpZnhoTVNqZFhSVWJYd29Oa.kpvYmFkajZTYjdTejdOR2Vicnp4dDN2WC51MoZQEoQAwnbw2RGb6Dvq"
+}</code></pre>
+
+
+
+                                            </div><!--//code-block-->
+                                            <div class="code-block">
+                                                <h6><span class="label label-success">data</span> decoded json</h6>
+                                                <pre><code class="language-json">{
+"name":"ZENLIX",
+"url":null,
+"logo":"http:\/\/localhost\/app\/logo\/default_app.png",
+"about":"Some zenlix helpdesk app"
+}</code></pre>
+                                            </div><!--//code-block-->
+                                        </div>
+                                        <div class="col-md-6">
+
+
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>Type</th>
+                                                        <th>Param</th>
+                                                        <th>Description</th>
+
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td><span class="label label-default">string</span></td>
+                                                        <th>data</th>
+                                                        <td>Закодированная строка данных</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="label label-default">string</span></td>
+                                                        <th>name</th>
+                                                        <td>Название сервиса</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="label label-default">string</span></td>
+                                                        <th>url</th>
+                                                        <td>URL-адрес сервиса</td>
+
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td><span class="label label-default">string</span></td>
+                                                        <th>logo</th>
+                                                        <td>URL к изображению логотипу сервиса</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="label label-default">string</span></td>
+                                                        <th>about</th>
+                                                        <td>Краткая информация о сервисе</td>
+                                                    </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+
+
+                                        </div>
+
+                                    </div>
+
+
+
+
+
+
+
+
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                                </div>
+
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
+
+
+
+
+
+
+                    <div class="col-md-12">
+                        <h3 id="qr-section" class="block-title">QR-код</h3>
+                        <div class="section-block">
+
+                            Запрос отправляет данные об QR-коде, для авторизации. После того как приложение считывает QR-код, ему доступно <span class="label label-success">Request Hash</span>.
+
+
+                        </div>
+
+                        <h4 class="block-title">Request</h4>
+                        <div class="row">
+                            <div class="col-md-1">
+                                <h6>Method:</h6>
+                                <p><code>POST</code></p>
+                            </div>
+                            <div class="col-md-11">
+                                <h6>API Endpoint:</h6>
+                                <p><code>https://api.pushauth.io/qr/store</code></p>
+                            </div>
+
+                        </div>
+
+
+
+
+
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Content-Type:</h6>
+                                <p><code>application/json</code></p>
+                                <div class="code-block">
+                                    <h6>Body request example</h6>
+                                    <pre><code class="language-json">{
+"pk":"DevicePublicKey",
+"data":"YlRyencwNUU0b2NvTXFPUTl5alhheXlpZnhoTVNqZFhSVWJYd29Oa.kpvYmFkajZTYjdTejdOR2Vicnp4dDN2WC51MoZQEoQAwnbw2RGb6Dvq"
+}</code></pre>
+                                </div><!--//code-block-->
+                                <div class="code-block">
+                                    <h6><span class="label label-success">data</span> decoded json</h6>
+                                    <pre><code class="language-json">{
+"hash":"12345678901234567890123456789012"
+}</code></pre>
+                                </div><!--//code-block-->
+
+                            </div>
+                            <div class="col-md-6">
+
+
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Type</th>
+                                            <th>Param</th>
+                                            <th>Description</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td><span class="label label-default">string</span></td>
+                                            <th>pk</th>
+                                            <td>Публичный ключ устройства</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td><span class="label label-default">string</span></td>
+                                            <th>data</th>
+                                            <td>base64-закодированное значение(строка), подписанное HMAC приватным ключём устройства.</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td><span class="label label-default">string</span></td>
+                                            <th>hash</th>
+                                            <td>Request hash считанный из QR-кода.</td>
+
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+
+                            </div>
+
+                        </div>
+
+
+
+
+
+
+
+
+
+
+                    </div>
+
+
+
+
+
+
+
+                    <div id="logout-section"  class="section-block">
+                        <h2 class="block-title">Выход из устройства</h2>
+                        <div class="section-block">
+
+                            При выходе из устройства, необходимо удалить приватный и публичный ключи. Устройство больше не сможет получить push и отправлять данные.
+
+                        </div>
+                        <h4 class="block-title">Request</h4>
+                        <div class="row">
+                            <div class="col-md-1">
+                                <h6>Method:</h6>
+                                <p><code>POST</code></p>
+                            </div>
+                            <div class="col-md-11">
+                                <h6>API Endpoint:</h6>
+                                <p><code>https://api.pushauth.io/logout</code></p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Content-Type:</h6>
+                                <p><code>application/json</code></p>
+                                <div class="code-block">
+                                    <h6>Body request example</h6>
+                                    <pre><code class="language-json">{
+"pk":"DevicePublicKey"
+}</code></pre>
+                                </div><!--//code-block-->
+
+                            </div>
+                            <div class="col-md-6">
+
+
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Type</th>
+                                            <th>Param</th>
+                                            <th>Description</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td><span class="label label-default">string</span></td>
+                                            <th>pk</th>
+                                            <td>Публичный ключ устройства</td>
+
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+
+                            </div>
+
+                        </div>
+
+
+                        <hr>
+                        <h4 class="block-title">Response</h4>
+                        <div class="section-block">
+
+                            Ответ от сервера будет с кодом 200, если удаление устройства прошло успешно, в ином случае - смотрите коды ошибок.
+
+
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+
+                                <h5 class="block-title">Ответ</h5>
+
+                                <div class="col-md-6"><h6>Content-Type:</h6>
+                                    <p><code>application/json</code></p></div>
+                                <div class="col-md-6"><h6>Response Code:</h6>
+                                    <p><code>200 OK</code></p></div>
+
+
+
+
+                                <div class="code-block">
+                                    <h6>Body response example</h6>
+
+                                    <pre><code class="language-json">{
+"message":"Device deleted successful!"
+}</code></pre>
+
+
+
+                                </div><!--//code-block-->
+
+                            </div>
+                            <div class="col-md-6">
+
+
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Type</th>
+                                            <th>Param</th>
+                                            <th>Description</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td><span class="label label-default">string</span></td>
+                                            <th>message</th>
+                                            <td>Текст, в котором содержится объяснение результата запроса</td>
+
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+
+                            </div>
+
+                        </div>
+
+
+
+
+
+
+
+
+
+<div class="row">
+                    <div id="security-section"  class="section-block">
+                        <h2 class="block-title">Безопасность устройства</h2>
+                        <div class="section-block">
+Предполагается что после регистрации приложение всё время хранит публичный и приватный ключ. Необходимо должным образом хранить данные значения, особенно приватный ключ, что бы другие приложения или сервисы не смогли получить к данным переменным доступ.<br>
+Желательно, что бы приложение имело дополнительные настройки безопасности: TouchID, или вход по 4-х значному коду. Например, если пользователь делает ошибку 3 раза при вводе 4-х значного кода, автоматически вылогинивать устройство.
+
+                        </div>
+                        </div>
+</div>
+
+
+
+                        
+
+<div class="row">
+                    <div id="errors-section"  class="section-block">
+                        <h2 class="block-title">Коды ошибок</h2>
+                        <div class="section-block">
+В данном разделе описываются основные коды ошибок, при запросах. Если код 4xx или 5xx, то скорее всего будет присутствовать json значения: <span class="label label-success">status_code</span> и <span class="label label-success">message</span>.
+
+                        </div>
+
+
+
+<div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Code</th>
+                                            <th>Description</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <th>200 OK</th>
+                                            <td>Успешно обработан запрос.</td>
+
+                                        </tr>
+                                        <tr>
+                                            <th>403 Access Denied</th>
+                                            <td>Доступ запрещён, возможно пользователь или устройство заблокированы</td>
+
+                                        </tr>
+                                        <tr>
+                                            <th>404 Not Found</th>
+                                            <td>Не найдено</td>
+
+                                        </tr>
+                                        <tr>
+                                            <th>405 Method Not Allowed</th>
+                                            <td>Запрос послан не тем методом (POST/GET/PATCH/DELETE)</td>
+
+                                        </tr>
+                                        <tr>
+                                            <th>422 Unprocessable Entity</th>
+                                            <td>Ошибка в параметре запроса</td>
+
+                                        </tr>
+                                        <tr>
+                                            <th>428 Precondition Required</th>
+                                            <td>Необходимо дополнительно действие, подтверждение на email</td>
+
+                                        </tr>
+                                        <tr>
+                                            <th>500 Internal Server Error</th>
+                                            <td>Ошибка на сервере</td>
+
+                                        </tr>
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                        </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </section><!--//doc-section-->
+                    </div><!--//content-inner-->
+                </div><!--//doc-content-->
+                <div class="doc-sidebar hidden-xs">
+                    <nav id="doc-nav">
+                        <ul id="doc-menu" class="nav doc-menu" data-spy="affix">
+
+                            <li>
+                                <a class="scrollto" href="#auth-section">Авторизация/Регистрация</a>
+                                <ul class="nav doc-sub-menu">
+                                    <li><a class="scrollto" href="#auth-send-section">Отправка запроса</a></li>
+                                    <li><a class="scrollto" href="#auth-recieve-section">Получение ответа</a></li>
+
+                                </ul><!--//nav-->
+                            </li>
+<!--
+                            <li>
+                                <a class="scrollto" href="#dh-section">Обмен ключами</a>
+                                <ul class="nav doc-sub-menu">
+                                    <li><a class="scrollto" href="#dh-send-section">Отправка запроса</a></li>
+                                    <li><a class="scrollto" href="#dh-math-section">Вычисления</a></li>
+                                    <li><a class="scrollto" href="#dh-recieve-section">Обработка ответа</a></li>
+                                    <li><a class="scrollto" href="#dh-decode-section">Декодирование</a></li>
+
+                                </ul>&lt;!&ndash;//nav&ndash;&gt;
+                            </li>-->
+                            <li>
+                                <a class="scrollto" href="#push-section">PUSH</a>
+                                <ul class="nav doc-sub-menu">
+                                    <li><a class="scrollto" href="#push-recieve-section">Приём</a></li>
+                                    <li><a class="scrollto" href="#push-math-section">Обработка</a></li>
+                                    <li><a class="scrollto" href="#push-send-section">Отправка ответа</a></li>
+                                    <li><a class="scrollto" href="#push-encode-section">Кодирование</a></li>
+                                    <li><a class="scrollto" href="#push-applist-section">Список запросов</a></li>
+                                    <li><a class="scrollto" href="#push-appinfo-section">Информация об App</a></li>
+
+                                </ul><!--//nav-->
+                            </li>
+                            <li>
+                                <a class="scrollto" href="#qr-section">QR код</a>
+                                <ul class="nav doc-sub-menu">
+                                    <li><a class="scrollto" href="#qr-section">Отправка данных</a></li>
+
+
+                                </ul><!--//nav-->
+                            </li>
+                            <li><a class="scrollto" href="#logout-section">Выход из устройства</a></li>
+                            <li><a class="scrollto" href="#security-section">Безопасность устройства</a></li>
+                            <li><a class="scrollto" href="#errors-section">Коды ошибок</a></li>
+
+
+                        </ul><!--//doc-menu-->
+                    </nav>
+                </div><!--//doc-sidebar-->
+            </div><!--//doc-body-->
+        </div><!--//container-->
+    </div><!--//doc-wrapper-->
+
+    <div id="promo-block" class="promo-block">
+        <div class="container">
+            <div class="promo-block-inner">
+                <h3 class="promo-title text-center"><i class="fa fa-heart"></i> PushAuth - приложение, которое помогает людям не помнить пароли.</h3>
+                <div class="row">
+                    
+                    <div class="content-holder col-md-12">
+                        <div class="content-holder-inner">
+                            <div class="desc">
+                                <h4 class="content-title"><strong>Есть вопросы или нашли ошибку?</strong></h4>
+                                <p>Я всегда готов помочь, пишите мне: info@snisar.com or Skype: rustem_ck</p>
+                            </div><!--//desc-->
+                            <div class="author"><a href="http://snisar.com">Y.Snisar</a></div>
+                        </div><!--//content-holder-inner-->
+                    </div><!--//content-holder-->
+                </div><!--//row-->
+            </div><!--//promo-block-inner-->
+        </div><!--//container-->
+    </div><!--//promo-block-->
+
+</div><!--//page-wrapper-->
+
+<footer id="footer" class="footer text-center">
+    <div class="container">
+        <!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can check out other license options via our website: themes.3rdwavemedia.com */-->
+        <small class="copyright">Documented with <i class="fa fa-heart"></i> by <a href="№" targe="_blank">Y.Snisar</a> for developers</small>
+
+    </div><!--//container-->
+</footer><!--//footer-->
+
+
+<!-- Main Javascript -->
+<script type="text/javascript" src="assets/plugins/jquery-1.12.3.min.js"></script>
+<script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="assets/plugins/prism/prism.js"></script>
+<script type="text/javascript" src="assets/plugins/jquery-scrollTo/jquery.scrollTo.min.js"></script>
+<script type="text/javascript" src="assets/plugins/jquery-match-height/jquery.matchHeight-min.js"></script>
+<script type="text/javascript" src="assets/js/main.js"></script>
+
+</body>
+</html> 
+
